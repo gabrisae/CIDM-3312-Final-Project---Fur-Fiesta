@@ -1,6 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using FurFiesta.Data;
+using FurFiesta.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<FurFiestaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FurFiestaConnection")));
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
